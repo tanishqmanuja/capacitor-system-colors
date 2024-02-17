@@ -6,17 +6,26 @@ import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
 
+import java.util.Objects;
+
 @CapacitorPlugin(name = "SystemColors")
 public class SystemColorsPlugin extends Plugin {
 
-    private SystemColors implementation = new SystemColors();
+    private final SystemColors implementation = new SystemColors();
 
     @PluginMethod
-    public void echo(PluginCall call) {
-        String value = call.getString("value");
+    public void get(PluginCall call) {
+        String colorId = call.getString("id");
+
+        String color = implementation.getResourceColor(this.getContext(), colorId);
+
+        if (Objects.equals(color, implementation.NO_RESOURCE_ID_ERROR)){
+            call.reject("No ResourceId Found");
+            return;
+        }
 
         JSObject ret = new JSObject();
-        ret.put("value", implementation.echo(value));
+        ret.put("color", color);
         call.resolve(ret);
     }
 }
