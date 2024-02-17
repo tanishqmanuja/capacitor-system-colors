@@ -1,3 +1,3 @@
 export interface SystemColorsPlugin {
-  get(id: string): Promise<string>;
+  get(options: { id: string }): Promise<{ color: string }>;
 }
