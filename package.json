@@ -1,5 +1,5 @@
 {
-  "name": "@tanishqmanuja/capacitor-system-colors",
+  "name": "@tqman/capacitor-system-colors",
   "version": "0.0.1",
   "description": "Get native android system colors",
   "main": "dist/plugin.cjs.js",
